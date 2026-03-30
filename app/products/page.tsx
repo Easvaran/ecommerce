@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Filter, Search, ChevronDown, SlidersHorizontal, Grid, List as ListIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,7 +22,7 @@ const sortOptions = [
   { label: 'Top Rated', value: 'rating' },
 ];
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || 'All';
   const [products, setProducts] = useState([]);
@@ -259,5 +259,18 @@ export default function ProductsPage() {
         </main>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-20 text-center">
+        <Loader2 className="h-10 w-10 animate-spin text-indigo-600 mx-auto mb-4" />
+        <p className="text-slate-500 font-bold">Loading products...</p>
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }
