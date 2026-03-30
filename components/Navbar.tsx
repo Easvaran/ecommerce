@@ -26,7 +26,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session, status } = useSession();
-  const user = session?.user;
+  const user = session?.user as any;
   const isLoading = status === 'loading';
   const { openModal } = useAuthModalStore();
   const [isScrolled, setIsScrolled] = useState(false);
