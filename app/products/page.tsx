@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Filter, Search, ChevronDown, SlidersHorizontal, Grid, List as ListIcon } from 'lucide-react';
+import { Filter, Search, ChevronDown, SlidersHorizontal, Grid, List as ListIcon, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import ProductCard from '@/components/ProductCard';
